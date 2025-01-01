@@ -11,14 +11,14 @@ const PORT = 8001;
 SERVER.use(express.json());
 
 // Connect to MongoDB
-connectToMongoDB('mongodb://localhost:27017/short-url')
-    .then(() => {
-        console.log("MongoDB connected");
-    })
-    .catch((error) => {
-        console.error("Failed to connect to MongoDB:", error);
-        process.exit(1); // Exit the application if the database connection fails
-    });
+connectToMongoDB("mongodb://localhost:27017/short-url")
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((error) => {
+    console.error("Failed to connect to MongoDB:", error);
+    process.exit(1); // Exit the application if the database connection fails
+  });
 
 // Routes for URL shortening
 SERVER.use("/url", urlRoute.router);
@@ -27,5 +27,5 @@ SERVER.get("/:shortID", urlRoute.router);
 
 // Start the server
 SERVER.listen(PORT, () => {
-    console.log(`Server started at PORT: ${PORT}`);
+  console.log(`Server started at PORT: ${PORT}`);
 });
