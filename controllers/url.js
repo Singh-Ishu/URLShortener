@@ -17,7 +17,7 @@ async function handleGenerateNewShortURL(req, res) {
   if (existingURL) {
     return res
       .status(200)
-      .json({ message: "ID already in database", id: existingURL });
+      .json({ message: "ID already in database", id: existingURL.shortID });
   }
 
   try {
@@ -29,7 +29,7 @@ async function handleGenerateNewShortURL(req, res) {
       visitHistory: [],
     });
 
-    return res.status(201).json({ id: shortID });
+    return res.status(201).render("home", { id: shortID });
   } catch (error) {
     console.error("Error creating short URL:", error);
     return res.status(500).json({ error: "Internal Server Error" });
