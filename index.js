@@ -26,6 +26,7 @@ connectToMongoDB("mongodb://localhost:27017/short-url")
 
 SERVER.set("view engine", "ejs");
 SERVER.set("views", path.resolve("./views"));
+SERVER.use(express.static("./views"));
 
 // Routes for URL shortening
 SERVER.use("/url", urlRoute.router);

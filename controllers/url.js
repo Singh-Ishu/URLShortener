@@ -15,9 +15,10 @@ async function handleGenerateNewShortURL(req, res) {
 
   const existingURL = await URL.findOne({ redirectURL: body.url });
   if (existingURL) {
-    return res
-      .status(200)
-      .json({ message: "ID already in database", id: existingURL.shortID });
+    return res.status(200).render("home", {
+      message: "ID already in database",
+      id: existingURL.shortID,
+    });
   }
 
   try {
