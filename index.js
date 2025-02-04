@@ -2,8 +2,10 @@ const express = require("express");
 const path = require("path");
 
 const URL = require("./models/url");
-const staticRoute = require("./routes/staticRouter");
+
 const urlRoute = require("./routes/url");
+const staticRoute = require("./routes/staticRouter");
+const userRoute = require("./routes/user");
 
 const { connectToMongoDB } = require("./connect");
 
@@ -34,6 +36,8 @@ SERVER.use("/url", urlRoute.router);
 SERVER.get("/url/:shortID", urlRoute.router);
 //SSR?
 SERVER.use("/", staticRoute);
+
+SERVER.use("/user", userRoute.router);
 
 // Start the server
 SERVER.listen(PORT, () => {
